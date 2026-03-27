@@ -1,11 +1,11 @@
-const CACHE_NAME = "bb-cache-v1";
-
 self.addEventListener("install", e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
+    caches.open("bb-cache").then(cache => {
       return cache.addAll([
         "/",
         "/index.html",
+        "/shop.html",
+        "/cart.html",
         "/css/style.css",
         "/js/app.js"
       ]);
