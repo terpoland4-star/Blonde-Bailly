@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin</title>
+</head>
+
+<body>
+
+<h1>Dashboard</h1>
+
+<div id="orders"></div>
+<div id="bookings"></div>
+
+<script>
+const API = "http://localhost:3000";
+
+async function load() {
+  const orders = await fetch(API + "/orders").then(r => r.json());
+  const bookings = await fetch(API + "/bookings").then(r => r.json());
+
+  document.getElementById("orders").innerHTML =
+    "<h2>Commandes</h2>" + orders.map(o => JSON.stringify(o)).join("<br>");
+
+  document.getElementById("bookings").innerHTML =
+    "<h2>Réservations</h2>" + bookings.map(b => JSON.stringify(b)).join("<br>");
+}
+
+load();
+</script>
+
+</body>
+</html>
