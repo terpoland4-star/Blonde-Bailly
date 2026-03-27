@@ -1,48 +1,162 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Blonde Bailly</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <title>Blonde Bailly Beauty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff5f7;
+      color: #333;
+    }
+
+    header {
+      background: #ff4da6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 250px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    button {
+      background: #ff4da6;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e60073;
+    }
+
+    .actions {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .actions a {
+      display: inline-block;
+      margin: 10px;
+      text-decoration: none;
+      background: black;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-  <h1>Blonde Bailly</h1>
-  <nav>
-    <a href="index.html">Accueil</a>
-    <a href="shop.html">Boutique</a>
-    <a href="cart.html">Panier (<span id="cart-count">0</span>)</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<header>
+  <h1>💄 Blonde Bailly Beauty</h1>
+  <p>Beauté • Soins • Maquillage • Onglerie</p>
 </header>
 
-<section class="hero">
-  <div class="overlay">
-    <h2>Reveal Your Glow</h2>
-    <p>Luxury beauty for every woman</p>
-    <a href="shop.html"><button>Shop Now</button></a>
+<div class="container">
+
+  <h2>✨ Nos Services</h2>
+
+  <div class="services">
+
+    <div class="card">
+      <h3>💆‍♀️ Soin du visage</h3>
+      <p>Hydratation, éclat et nettoyage profond</p>
+      <button onclick="reserve('Soin du visage')">Réserver</button>
+    </div>
+
+    <div class="card">
+      <h3>💄 Maquillage Pro</h3>
+      <p>Événement, mariage, shooting</p>
+      <button onclick="reserve('Maquillage')">Réserver</button>
+    </div>
+
+    <div class="card">
+      <h3>💅 Onglerie</h3>
+      <p>Gel, vernis, nail art</p>
+      <button onclick="reserve('Onglerie')">Réserver</button>
+    </div>
+
   </div>
-</section>
 
-<section class="categories">
-  <div class="card">Soins Visage</div>
-  <div class="card">Onglerie</div>
-  <div class="card">Maquillage</div>
-</section>
-<h1>Blonde Bailly</h1>
+  <div class="actions">
+    <a href="shop.html">🛍️ Boutique</a>
+    <a href="cart.html">🛒 Panier</a>
+    <a href="admin.html">⚙️ Admin</a>
+  </div>
 
-<button onclick="bookService('Soin Visage')">Soin</button>
-<button onclick="bookService('Maquillage')">Maquillage</button>
-<button onclick="bookService('Onglerie')">Onglerie</button>
+</div>
 
-<a href="shop.html">Boutique</a>
 <footer>
-  <p>© Blonde Bailly</p>
+  <p>📞 WhatsApp : <a href="https://wa.me/2290161513820" style="color:#25D366;">+2290161513820</a></p>
+  <p>📧 Email : <a href="mailto:ibitokounelvie@gmail.com" style="color:#ff4da6;">Envoyer un mail</a></p>
+  <p>© 2026 Blonde Bailly Beauty</p>
 </footer>
 
 <script src="js/app.js"></script>
+
+<script>
+// RÉSERVATION + GOOGLE CALENDAR
+async function reserve(service) {
+
+  const date = prompt("Entre la date (YYYY-MM-DD)");
+
+  if(!date) return;
+
+  // ENVOI BACKEND
+  await fetch("http://localhost:3000/bookings", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ service, date })
+  });
+
+  // GOOGLE CALENDAR LINK
+  const start = date.replace(/-/g, "") + "T100000";
+  const end = date.replace(/-/g, "") + "T110000";
+
+  const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(service)}&dates=${start}/${end}&details=Rendez-vous Blonde Bailly Beauty`;
+
+  window.open(url, "_blank");
+
+  alert("Réservation enregistrée + ajout calendrier !");
+}
+</script>
+
 </body>
 </html>
