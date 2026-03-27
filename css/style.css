@@ -1,54 +1,225 @@
+/* ==========================
+   GLOBAL
+========================== */
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   margin: 0;
+  background: #fff5f7;
+  color: #333;
 }
 
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* ==========================
+   HEADER
+========================== */
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+  padding: 20px 40px;
   background: black;
   color: white;
+  flex-wrap: wrap;
 }
 
-nav a {
+.header .logo-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header nav a {
   color: white;
-  margin: 10px;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
+.header nav a:hover {
+  color: gold;
+}
+
+/* ==========================
+   HERO
+========================== */
 .hero {
   height: 80vh;
   background: #f5dede;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.overlay {
   text-align: center;
 }
 
-button {
-  background: gold;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
+.hero h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
 }
 
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  background: gold;
+}
+
+.hero button:hover {
+  background: #e6c200;
+}
+
+/* ==========================
+   SERVICES
+========================== */
+.container {
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  padding: 25px 15px;
+  border-radius: 15px;
+  flex: 1 1 250px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+  margin: 15px 0 10px;
+}
+
+.card button {
+  background: #ff4da6;
+  color: white;
+}
+
+.card button:hover {
+  background: #e60073;
+}
+
+/* ==========================
+   ACTIONS
+========================== */
+.actions {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.actions a {
+  display: inline-block;
+  margin: 10px;
+  text-decoration: none;
+  background: black;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.actions a:hover {
+  background: #ff4da6;
+}
+
+/* ==========================
+   PRODUCTS
+========================== */
 .products {
   padding: 40px;
 }
 
 .grid {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .product {
   border: 1px solid #ddd;
   padding: 20px;
+  border-radius: 10px;
+  background: white;
+  flex: 1 1 250px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ==========================
+   CART
+========================== */
 .cart {
   padding: 40px;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+  margin-top: 50px;
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+footer a {
+  color: #ff4da6;
+}
+
+/* ==========================
+   MEDIA QUERIES
+========================== */
+@media(max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header nav {
+    margin-top: 10px;
+  }
+
+  .header nav a {
+    margin: 5px;
+  }
+
+  .services, .grid {
+    flex-direction: column;
+    align-items: center;
+  }
 }
